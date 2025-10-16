@@ -1,9 +1,10 @@
 Package: fipe
 Title: Dados da tabela Fipe 
 Version: 0.0.1
-Authors@R: 
-    person("Tomas", "Barcellos", "tomas.barcellos@gmail.com", 
-           role = c("aut", "cre"))
+Authors@R: person(given = c("Tomás", "de", "Siervi"),
+                    family = "Barcellos",
+                    role = c("aut", "cre"),
+                    email = "tomas.barcellos@gmail.com")
 Maintainer: Tomás de Siervi Barcellos <tomas.barcellos@gmail.com>
 Description: Funcoes para ler dados da tabela Fipe, 
     incluindo dados de 22 anos (2002-2024) para modelos mais comuns.
