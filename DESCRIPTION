@@ -1,0 +1,15 @@
+Package: fipe
+Title: Dados da tabela Fipe 
+Version: 0.0.1
+Authors@R: 
+    person("Tomas", "Barcekkis", "tomas.barcellos@gamil.com", 
+           role = c("aut", "cre"))
+Description: Funcoes para ler dados da tabela Fipe, 
+    incluindo dados de 22 anos (2002-2024) para modelos mais comuns.
+License: CC0
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends: 
+    R (>= 2.10)
+LazyData: true
