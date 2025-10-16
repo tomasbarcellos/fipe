@@ -2,13 +2,23 @@
 % Please edit documentation in R/tabela_fipe.R
 \name{get_modelos}
 \alias{get_modelos}
-\title{Title}
+\title{Codigo dos modelos}
 \usage{
 get_modelos(referencia, cod_marca)
 }
 \arguments{
-\item{cod_marca}{}
+\item{referencia}{Codigo da referencia}
+
+\item{cod_marca}{Codigo da marca}
+}
+\value{
+Uma lista com duas tibbles. Na primeira tem modelos e codigos
+na segunda tem codigos dos tipos de combustivel.
 }
 \description{
-Title
+Codigo dos modelos
+}
+\examples{
+# modelos da audia em 2022
+get_modelos("292", "6")
 }

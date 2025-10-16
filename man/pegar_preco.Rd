@@ -2,13 +2,16 @@
 % Please edit documentation in R/tabela_fipe.R
 \name{pegar_preco}
 \alias{pegar_preco}
-\title{Title}
+\title{Preco do modelo na referencia}
 \usage{
 pegar_preco(link)
 }
 \arguments{
-\item{link}{}
+\item{link}{Link gerado em \code{\link{tabela_fipe}}}
+}
+\value{
+Uma tibble com dado de preco do modelo na referencia
 }
 \description{
-Title
+Preco do modelo na referencia
 }

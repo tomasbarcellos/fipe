@@ -2,13 +2,23 @@
 % Please edit documentation in R/tabela_fipe.R
 \name{tabela_fipe}
 \alias{tabela_fipe}
-\title{Title}
+\title{Preco de carros 0km}
 \usage{
 tabela_fipe(ano, marca, modelo)
 }
 \arguments{
-\item{modelo}{}
+\item{ano}{Ano}
+
+\item{marca}{Marca}
+
+\item{modelo}{Codigo do modelo}
+}
+\value{
+Uma tibble com os precos dos veiculos zero que possam ser os buscados
 }
 \description{
-Title
+Preco de carros 0km
+}
+\examples{
+tabela_fipe(2021, "audi", "Q3")
 }

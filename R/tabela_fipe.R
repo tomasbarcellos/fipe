@@ -1,10 +1,27 @@
-get_referencia <- function(ano_) {
+#' Codigo do ano/mes de referencia
+#'
+#' @param ano_
+#'
+#' @return Uma lista de
+#'
+#' @examples
+#' get_referencia(2015)
+get_referencia <- function(.ano) {
   tbl_ano %>%
-    dplyr::filter(ano == ano_) %>%
+    dplyr::filter(ano == .ano) %>%
     dplyr::pull(valor) %>%
     unique()
 }
 
+#' Codigo das marcas
+#'
+#' @param referencia Codigo do ano/mes de referencia.
+#'   Ver \code{\link{get_referencia}}
+#'
+#' @return Uma tibble com codigo das marcas
+#'
+#' @examples
+#' get_marcas(get_referencia(2022))
 get_marcas <- function(referencia) {
   body <- list(codigoTabelaReferencia = referencia,
                codigoTipoVeiculo = 1)
@@ -25,6 +42,17 @@ get_marcas <- function(referencia) {
   )
 }
 
+#' Codigo dos modelos
+#'
+#' @param referencia Codigo da referencia
+#' @param cod_marca Codigo da marca
+#'
+#' @return Uma lista com duas tibbles. Na primeira tem modelos e codigos
+#'   na segunda tem codigos dos tipos de combustivel.
+#'
+#' @examples
+#' # modelos da audia em 2022
+#' get_modelos("292", "6")
 get_modelos <- function(referencia, cod_marca) {
 
   body <- list(codigoTipoVeiculo = "1",
@@ -52,6 +80,11 @@ get_modelos <- function(referencia, cod_marca) {
   )
 }
 
+#' Preco do modelo na referencia
+#'
+#' @param link Link gerado em \code{\link{tabela_fipe}}
+#'
+#' @return Uma tibble com dado de preco do modelo na referencia
 pegar_preco <- function(link) {
   partes <- link %>%
     stringr::str_split_1("&") %>%
@@ -61,6 +94,7 @@ pegar_preco <- function(link) {
   names(body) <- partes %>%
     purrr::map_chr(1)
 
+  # Sendo gentil com servidor da Fipe
   if (sample(c(TRUE, FALSE), 1, prob = c(0.1, 0.9))) {
     Sys.sleep(abs(rnorm(1, 10, 2)))
   }
@@ -76,6 +110,17 @@ pegar_preco <- function(link) {
     tibble::as_tibble()
 }
 
+#' Preco de carros 0km
+#'
+#' @param ano Ano
+#' @param marca Marca
+#' @param modelo Codigo do modelo
+#'
+#' @return Uma tibble com os precos dos veiculos zero que possam ser os buscados
+#' @export
+#'
+#' @examples
+#' tabela_fipe(2021, "audi", "Q3")
 tabela_fipe <- function(ano, marca, modelo) {
   referencia <- get_referencia(ano)
 
@@ -113,7 +158,7 @@ tabela_fipe <- function(ano, marca, modelo) {
 
   res <- purrr::map(links, purrr::safely(pegar_preco)) %>%
     purrr::map_df("result")
-  saveRDS(res, glue::glue("dados/{marca}_{modelo}_{ano}.rds"))
+
   res
 }
 
