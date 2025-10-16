@@ -1,0 +1,54 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# fipe
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+Por enquanto só é possível instalar o pacote pelo github.
+
+```r
+remotes::install_github("tomasbarcellos/fipe")
+```
+
+O objetivo de fipe é criar uma forma fácil de acessar os dados 
+de preços de carros novos pelo R.
+
+Um exemplo pode ser visto abaixo
+
+```{r, include=FALSE}
+library(fipe)
+library(dplyr)
+```
+
+```{r}
+library(fipe)
+library(dplyr)
+
+q3_2021 <- tabela_fipe(2021, "audi", "Q3") %>% 
+  filter(!is.na(Valor))
+q3_2021 %>% 
+  glimpse()
+```
+
+
+O pacote também inclui uma tabela com precos dos modelos 
+mais vendidos dos últimos 22 anos (2003-2024).
+
+```{r}
+precos_fipe %>% 
+  glimpse()
+```
+
